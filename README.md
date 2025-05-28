@@ -21,7 +21,7 @@ npm run dev (Vite will start the dev server and give you a URL like:)
 
 Local: http://localhost:5173/ (Open it in your browser to see your app.)
 
-NOTE: If fails due to axios. Do intall
+NOTE: If fails due to axios. Do intall:
 npm install axios
 
 
