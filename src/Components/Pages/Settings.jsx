@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Settings.css"; // Import the CSS file
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const Settings = () => {
   const settingsData = [
@@ -40,38 +41,47 @@ export const Settings = () => {
 
 
   const SettingRow = ({ label, type }) => (
-    <div className="setting-row">
-      <label className="setting-label">{label}</label>
-      {type === "select" ? (
-        <select className="setting-select">
-          <option>Yes</option>
-          <option>No</option>
-        </select>
-      ) : (
-        <input
-          type="text"
-          className="setting-input"
-          placeholder="Enter value"
-        />
-      )}
+    <div className="col-md-6 col-lg-4 mb-4">
+      <div className="card h-100 shadow-sm border-0">
+        <div className="card-body d-flex flex-column gap-2">
+          <label className="form-label fw-semibold mb-1">{label}</label>
+          {type === "select" ? (
+            <select className="form-select">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          ) : (
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter value"
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 
   return (
-    <div className="settings-container">
-      <h1 className="settings-title">GST Settings</h1>
-      <div className="settings-grid">
+    <div className="container-fluid py-4 settings-container">
+      <h1 className="mb-4 text-center settings-title">
+        <i className="fas fa-cogs me-2 text-primary"></i>Settings
+      </h1>
+      <div className="row g-4">
         {settingsData.map((setting, index) => (
           <SettingRow key={index} {...setting} />
         ))}
       </div>
-      <div className="settings-buttons">
-        <button className="settings-button">
-          <Link to="/company">Go to Company</Link>
+      <div className="settings-savebar bg-white shadow-sm rounded-pill d-flex justify-content-center align-items-center gap-3 py-3 mt-5 sticky-bottom">
+        <button className="btn btn-success px-4 rounded-pill">
+          <i className="fas fa-save me-2"></i>Save Settings
         </button>
-        <button className="settings-button">
-          <Link to="/Login">Go to Login</Link>
-        </button>
+        <Link to="/company" className="btn btn-outline-primary px-4 rounded-pill">
+          <i className="fas fa-building me-2"></i>Go to Company
+        </Link>
+        <Link to="/login" className="btn btn-outline-secondary px-4 rounded-pill">
+          <i className="fas fa-sign-in-alt me-2"></i>Go to Login
+        </Link>
       </div>
     </div>
   );

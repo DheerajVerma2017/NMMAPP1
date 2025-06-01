@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 //import "../App.css";
 import Axios from "axios";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 export const Signup = () =>{
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -26,44 +28,70 @@ export const Signup = () =>{
 
         })
     };
-  return(
-  <>  
-    <div className="sign-up-container">
-      <form className="sign-up-form" onSubmit={handleSubmit}>
-      <h2>Welcome to NMM App</h2>
-         <div className="input-box">
-          <i class='bx bxs-user'></i>
-          <label for="name">User Full Name</label>
-            <input type="text" placeholder="Enter Your Full Name*"
-            onChange={(e) => setName(e.target.value)}
+  return (
+    <div className="container py-5 d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow" style={{ maxWidth: 400, width: '100%' }}>
+        <form onSubmit={handleSubmit}>
+          <h2 className="mb-4 text-center">Welcome to NMM</h2>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">User Full Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="name"
+              placeholder="Enter Your Full Name*"
+              onChange={(e) => setUsername(e.target.value)}
+              required
             />
           </div>
-          <div className="input-box">
-            <i class='bx bxs-envelope'></i>
-            <label for="email">Email</label>
-              <input type="email" placeholder="Enter Your Email*"
-              onChange={(e) => setEmail(e.target.value)}
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email</label>
+            <div className="input-group">
+              <span className="input-group-text"><i className="fas fa-envelope"></i></span>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder="Enter Your Email*"
+                onChange={e => setEmail(e.target.value)}
+                required
               />
             </div>
-            <div className="input-box">
-            <i class='bx bxs-phone'></i>
-            <label for="phone">Phone no</label>
-              <input type="phone" placeholder="Enter Your Phone no*"
-              onChange={(e) => setPhone(e.target.value)}
+          </div>
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">Phone no</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="phone"
+              placeholder="Enter Your Phone no*"
+              onChange={(e) => setPhone && setPhone(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Password</label>
+            <div className="input-group">
+              <span className="input-group-text"><i className="fas fa-lock"></i></span>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Enter Your Password*"
+                onChange={e => setPassword(e.target.value)}
+                required
               />
             </div>
-             <div className="input-box">
-              <i class='bx bxs-lock'></i>
-             <label for="password">Password</label>
-              <input type="password" placeholder="Enter Your Password*"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              </div>
-              <button type='submit'>Signup</button>
-              <p>Already have an account?</p> <Link to="/login">Login</Link>
+          </div>
+          <button type="submit" className="btn btn-primary w-100 mb-3">
+            <i className="fas fa-user-plus me-2"></i>Signup
+          </button>
+          <div className="text-center">
+            <span>Already have an account? </span>
+            <Link to="/login">Login</Link>
+          </div>
         </form>
       </div>
-   </>
+    </div>
   );
 };
 

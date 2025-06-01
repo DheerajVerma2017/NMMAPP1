@@ -76,6 +76,7 @@ import { useState } from 'react';
 import { useReactTable, getCoreRowModel, flexRender } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import './View.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
  export const View = () => {
   const [activeTab, setActiveTab] = useState('onlineOrders');
@@ -134,177 +135,185 @@ import './View.css';
   });
 
   return (
-    <>
-    <div className="sales-view-container">
-      <div className="header-section">
-        <h1>Sales View</h1>
-        <div className="customer-info">
-          <div className="info-row">
-            <span className="label">Type</span>
-            <span className="value">Sales</span>
-            <span className="label">Ref</span>
-          </div>
-          <div className="info-row">
-            <span className="label">Name</span>
-            <span className="value">Call / Name A</span>
-          </div>
-          <div className="info-row">
-            <span className="label">Mobile</span>
-            <span className="value">5772759990</span>
-          </div>
-          <div className="info-row">
-            <span className="label">Address</span>
+    <div className="container-fluid py-4">
+      <div className="row">
+        <div className="col-12">
+          <div className="card mb-4">
+            <div className="card-body">
+              <h1 className="card-title mb-4 text-center">Sales View</h1>
+              <div className="customer-info mb-3">
+                <div className="row">
+                  <div className="col-md-3"><span className="fw-bold">Type:</span> Sales</div>
+                  <div className="col-md-3"><span className="fw-bold">Ref:</span></div>
+                  <div className="col-md-3"><span className="fw-bold">Name:</span> Call / Name A</div>
+                  <div className="col-md-3"><span className="fw-bold">Mobile:</span> 5772759990</div>
+                </div>
+                <div className="row"><div className="col-12"><span className="fw-bold">Address:</span></div></div>
+              </div>
+              <div className="mb-3">
+                <button className={`btn btn-outline-primary me-2${activeTab === 'onlineOrders' ? ' active' : ''}`} onClick={() => setActiveTab('onlineOrders')}>
+                  <i className="fas fa-shopping-cart me-1"></i>Online Orders
+                </button>
+                <button className={`btn btn-outline-secondary${activeTab === 'recent' ? ' active' : ''}`} onClick={() => setActiveTab('recent')}>
+                  <i className="fas fa-clock me-1"></i>Recent
+                </button>
+              </div>
+              <div className="table-responsive mb-4">
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    {table.getHeaderGroups().map(headerGroup => (
+                      <tr key={headerGroup.id}>
+                        {headerGroup.headers.map(header => (
+                          <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>
+                        ))}
+                      </tr>
+                    ))}
+                  </thead>
+                  <tbody>
+                    {table.getRowModel().rows.map(row => (
+                      <tr key={row.id}>
+                        {row.getVisibleCells().map(cell => (
+                          <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="card mb-3">
+                <div className="card-body">
+                  <h5 className="card-title">Payment Method</h5>
+                  <div className="d-flex gap-3 mb-3">
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="payment" checked={paymentMethod === 'cash'} onChange={() => setPaymentMethod('cash')} />
+                      <label className="form-check-label">Cash</label>
+                    </div>
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="payment" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} />
+                      <label className="form-check-label">Card</label>
+                    </div>
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="payment" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} />
+                      <label className="form-check-label">UPI</label>
+                    </div>
+                  </div>
+                  <div className="row g-2">
+                    <div className="col-md-3"><span className="fw-bold">Sold:</span> $56</div>
+                    <div className="col-md-3"><span className="fw-bold">Recent:</span> $0 days</div>
+                    <div className="col-md-3"><span className="fw-bold">Loyalty:</span> Balance</div>
+                    <div className="col-md-3"><span className="fw-bold">Expense:</span> 59</div>
+                    <div className="col-md-3"><span className="fw-bold">Savings:</span> 0</div>
+                    <div className="col-md-3"><span className="fw-bold">Payment in Cash:</span> 0</div>
+                    <div className="col-md-3"><span className="fw-bold">Payment in Card:</span> 0</div>
+                    <div className="col-md-3"><span className="fw-bold">Payment in UPI:</span> 590</div>
+                    <div className="col-md-3"><span className="fw-bold">Change Given:</span> 0</div>
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex gap-2 mb-3">
+                <button className="btn btn-success"><i className="fas fa-save me-1"></i>Save</button>
+                <button className="btn btn-primary"><i className="fas fa-arrow-right me-1"></i>Save & Next</button>
+                <button className="btn btn-danger"><i className="fas fa-times me-1"></i>Cancel</button>
+              </div>
+              <div className="d-flex gap-2">
+                <button className="btn btn-secondary">
+                  <i className="fas fa-building me-1"></i>
+                  <Link to="/company" className="text-white text-decoration-none">Go to Company</Link>
+                </button>
+                <button className="btn btn-info">
+                  <i className="fas fa-shopping-cart me-1"></i>
+                  <Link to="/purchase" className="text-white text-decoration-none">Go to Purchase</Link>
+                </button>
+                <button className="btn btn-danger">
+                  <i className="fas fa-sign-out-alt me-1"></i>
+                  <Link to="/Logout" className="text-white text-decoration-none">Logout</Link>
+                </button>
+              </div>
+              <div className="action-buttons">
+                <button className="print-btn"><i className="fas fa-print me-1"></i>Print</button>
+                <button className="export-btn"><i className="fas fa-file-excel me-1"></i>Export Excel</button>
+                <button className="report-btn"><i className="fas fa-file-alt me-1"></i>Excel Report</button>
+              </div>
+              <div className="table-responsive mb-4">
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    {table.getHeaderGroups().map(headerGroup => (
+                      <tr key={headerGroup.id}>
+                        {headerGroup.headers.map(header => (
+                          <th key={header.id}>{flexRender(header.column.columnDef.header, header.getContext())}</th>
+                        ))}
+                      </tr>
+                    ))}
+                  </thead>
+                  <tbody>
+                    {table.getRowModel().rows.map(row => (
+                      <tr key={row.id}>
+                        {row.getVisibleCells().map(cell => (
+                          <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+                        ))}
+                        <td>
+                          <button className="btn btn-warning btn-sm me-1"><i className="fas fa-edit"></i></button>
+                          <button className="btn btn-danger btn-sm"><i className="fas fa-trash-alt"></i></button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="card mb-3">
+                <div className="card-body">
+                  <h5 className="card-title">Payment Method</h5>
+                  <div className="d-flex gap-3 mb-3">
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="payment" checked={paymentMethod === 'cash'} onChange={() => setPaymentMethod('cash')} />
+                      <label className="form-check-label">Cash</label>
+                    </div>
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="payment" checked={paymentMethod === 'card'} onChange={() => setPaymentMethod('card')} />
+                      <label className="form-check-label">Card</label>
+                    </div>
+                    <div className="form-check">
+                      <input className="form-check-input" type="radio" name="payment" checked={paymentMethod === 'upi'} onChange={() => setPaymentMethod('upi')} />
+                      <label className="form-check-label">UPI</label>
+                    </div>
+                  </div>
+                  <div className="row g-2">
+                    <div className="col-md-3"><span className="fw-bold">Sold:</span> $56</div>
+                    <div className="col-md-3"><span className="fw-bold">Recent:</span> $0 days</div>
+                    <div className="col-md-3"><span className="fw-bold">Loyalty:</span> Balance</div>
+                    <div className="col-md-3"><span className="fw-bold">Expense:</span> 59</div>
+                    <div className="col-md-3"><span className="fw-bold">Savings:</span> 0</div>
+                    <div className="col-md-3"><span className="fw-bold">Payment in Cash:</span> 0</div>
+                    <div className="col-md-3"><span className="fw-bold">Payment in Card:</span> 0</div>
+                    <div className="col-md-3"><span className="fw-bold">Payment in UPI:</span> 590</div>
+                    <div className="col-md-3"><span className="fw-bold">Change Given:</span> 0</div>
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex gap-2 mb-3">
+                <button className="btn btn-success"><i className="fas fa-save me-1"></i>Save</button>
+                <button className="btn btn-primary"><i className="fas fa-arrow-right me-1"></i>Save & Next</button>
+                <button className="btn btn-danger"><i className="fas fa-times me-1"></i>Cancel</button>
+              </div>
+              <div className="d-flex gap-2">
+                <button className="btn btn-secondary">
+                  <i className="fas fa-building me-1"></i>
+                  <Link to="/company" className="text-white text-decoration-none">Go to Company</Link>
+                </button>
+                <button className="btn btn-info">
+                  <i className="fas fa-shopping-cart me-1"></i>
+                  <Link to="/purchase" className="text-white text-decoration-none">Go to Purchase</Link>
+                </button>
+                <button className="btn btn-danger">
+                  <i className="fas fa-sign-out-alt me-1"></i>
+                  <Link to="/Logout" className="text-white text-decoration-none">Logout</Link>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="tabs-section">
-        <button 
-          className={activeTab === 'onlineOrders' ? 'active' : ''}
-          onClick={() => setActiveTab('onlineOrders')}
-        >
-          Online Orders
-        </button>
-        <button 
-          className={activeTab === 'recent' ? 'active' : ''}
-          onClick={() => setActiveTab('recent')}
-        >
-          Recent
-        </button>
-      </div>
-      <div className="sales-table-section">
-        <div className="table-header">
-          <span>Sales</span>
-          <span>Time</span>
-          <span>Date</span>
-          <span>Status</span>
-          <span>GST No.</span>
-          <span>State</span>
-          <span>Unit / Product (G)</span>
-          <span>Date</span>
-          <span>Status</span>
-        </div>
-
-        <div className="table-container">
-          <table>
-            <thead>
-              {table.getHeaderGroups().map(headerGroup => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map(header => (
-                    <th key={header.id}>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-              {table.getRowModel().rows.map(row => (
-                <tr key={row.id}>
-                  {row.getVisibleCells().map(cell => (
-                    <td key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="payment-section">
-        <div className="payment-methods">
-          <h3>Payment Method</h3>
-          <div className="method-options">
-            <label>
-              <input 
-                type="radio" 
-                name="payment" 
-                checked={paymentMethod === 'cash'}
-                onChange={() => setPaymentMethod('cash')}
-              />
-              Cash
-            </label>
-            <label>
-              <input 
-                type="radio" 
-                name="payment" 
-                checked={paymentMethod === 'card'}
-                onChange={() => setPaymentMethod('card')}
-              />
-              Card
-            </label>
-            <label>
-              <input 
-                type="radio" 
-                name="payment" 
-                checked={paymentMethod === 'upi'}
-                onChange={() => setPaymentMethod('upi')}
-              />
-              UPI
-            </label>
-          </div>
-        </div>
-
-        <div className="summary-section">
-          <div className="summary-row">
-            <span>Sold</span>
-            <span>$56</span>
-          </div>
-          <div className="summary-row">
-            <span>Recent</span>
-            <span>$ 0 days</span>
-          </div>
-          <div className="summary-row">
-            <span>Loyalty</span>
-            <span>Balance</span>
-          </div>
-          <div className="summary-row">
-            <span>Expense</span>
-            <span>59</span>
-          </div>
-          <div className="summary-row">
-            <span>Savings</span>
-            <span>0</span>
-          </div>
-          <div className="summary-row">
-            <span>Payment in Cash</span>
-            <span>0</span>
-          </div>
-          <div className="summary-row">
-            <span>Payment in Card</span>
-            <span>0</span>
-          </div>
-          <div className="summary-row">
-            <span>Payment in UPI</span>
-            <span>590</span>
-          </div>
-          <div className="summary-row">
-            <span>Change Given</span>
-            <span>0</span>
-          </div>
-        </div>
-      </div>
-       <div className="action-buttons">
-        <button className="save-btn">Save</button>
-        <button className="save-next-btn">Save & Next</button>
-        <button className="cancel-btn"> Cancel</button>
       </div>
     </div>
-    <br/>
-    <button><Link to="/company">Go to Company</Link></button>
-    <br/>
-     <button><Link to="/purchase">Go to Purchase</Link></button>
-     <br/>
-    <button><Link to="/Logout">Logout</Link></button>
-    </>
   );
 }
 

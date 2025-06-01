@@ -1,13 +1,9 @@
-/*
-// Layout.js
-// This component is used to wrap the entire page and apply styles based on the current page
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './Layout.css';
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  
   // Get the page name from the path
   const getPageClass = () => {
     const path = location.pathname;
@@ -22,12 +18,14 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={`pages-container ${getPageClass()}`}>
-      {children}
+    <div className={`pages-container ${getPageClass()} container-fluid p-0`}>
+      <div className="row m-0">
+        <div className="col-12 p-0">
+          {children}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Layout;
-
-*/

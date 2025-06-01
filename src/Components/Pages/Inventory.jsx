@@ -2,6 +2,8 @@ import { useState, setInventory, useEffect } from 'react';
 import { FaPrint, FaFileExcel, FaSearch, FaSave, FaFilter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './Inventory.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const Inventory = () => {
   const [inventory, setInventory] = useState([
@@ -78,129 +80,160 @@ export const Inventory = () => {
     });
 
   return (
-    <>
-    <div className="inventory-container">
-      {/* <h6>INVENTORY MANAGEMENT</h6> */}
-      <div className="toolbar">
-        <div className="action-buttons">
-           <button onClick={exportToExcel} className="excel-btn">
-            <FaFileExcel /> Excel Report
-          </button>
-          <button onClick={handlePrint} className="print-btn">
-            <FaPrint /> Print Report
-          </button>
-          <button onClick={handlePrint} className="save-btn">
-            <FaSave /> Save
-          </button>
-            <button className="report-btn">Barcode</button>
-        </div>
+    <div className="container-fluid py-4">
+      <div className="row">
+        <div className="col-12">
+          <h1 className="mb-4 text-center">Inventory</h1>
+          <div className="action-buttons d-flex gap-2 mb-3">
+            <button onClick={exportToExcel} className="btn btn-success">
+              <i className="fas fa-file-excel me-1"></i>Excel Report
+            </button>
+            <button onClick={handlePrint} className="btn btn-primary">
+              <i className="fas fa-print me-1"></i>Print Report
+            </button>
+            <button onClick={handlePrint} className="btn btn-info">
+              <i className="fas fa-save me-1"></i>Save
+            </button>
+            <button className="btn btn-warning">
+              <i className="fas fa-barcode me-1"></i>Barcode
+            </button>
+          </div>
+          <div className="search-filter row mb-3">
+            <div className="col-md-4 mb-2">
+              <div className="input-group">
+                <span className="input-group-text"><FaSearch /></span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search description or barcode..."
+                  value={searchTerm}
+                  onChange={handleSearch}
+                />
+              </div>
+            </div>
 
-        <div className="search-filter">
-          <div className="search-box">
-            <FaSearch className="search-icon" />
-            <input
-              type="text"
-              placeholder="Search description or barcode..."
-              value={searchTerm}
-              onChange={handleSearch}
-            />
+            <div className="col-md-2 mb-2">
+              <div className="form-group">
+                <label>Category:</label>
+                <select className="form-control" value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
+                  {categories.map(category => (
+                    <option key={category} value={category}>{category}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="col-md-2 mb-2">
+              <div className="form-group">
+                <label>Status:</label>
+                <select className="form-control" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+                  {statuses.map(status => (
+                    <option key={status} value={status}>{status}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="col-md-2 mb-2">
+              <div className="form-group">
+                <label>Stock:</label>
+                <select className="form-control" value={filterStock} onChange={(e) => setFilterStock(e.target.value)}>
+                  <option value="All">All Items</option>
+                  <option value="Low">Low Stock</option>
+                  <option value="Expiring">Expiring Soon</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div className="table-responsive">
+            <table className="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th onClick={() => handleSort('id')}>#</th>
+                  <th onClick={() => handleSort('description')}>Description</th>
+                  <th onClick={() => handleSort('category')}>Category</th>
+                  <th onClick={() => handleSort('location')}>Location/Ageing</th>
+                  <th onClick={() => handleSort('status')}>Status</th>
+                  <th onClick={() => handleSort('barcode')}>Barcode</th>
+                  <th onClick={() => handleSort('city')}>City</th>
+                  <th onClick={() => handleSort('stock')}>Stock</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredInventory.map(item => (
+                  <tr key={item.id} className={item.stock < 50 ? 'low-stock' : ''}>
+                    <td>{item.id}</td>
+                    <td>{item.description}</td>
+                    <td>{item.category}</td>
+                    <td>{item.location}</td>
+                    <td>
+                      <span className={`status-badge ${item.status.toLowerCase()}`}>
+                        {item.status}
+                      </span>
+                    </td>
+                    <td>{item.barcode}</td>
+                    <td>{item.city}</td>
+                    <td>{item.stock}</td>
+                    <td>
+                      <button className="btn btn-warning btn-sm me-1">
+                        <i className="fas fa-edit"></i>
+                      </button>
+                      <button className="btn btn-danger btn-sm">
+                        <i className="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
-          <div className="filter-group">
-            <label>Category:</label>
-            <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
-              {categories.map(category => (
-                <option key={category} value={category}>{category}</option>
-              ))}
-            </select>
+          <div className="summary-section mt-4">
+            <div className="row">
+              <div className="col-md-3 mb-3">
+                <div className="card text-white bg-primary">
+                  <div className="card-body">
+                    <h5 className="card-title">Total Items</h5>
+                    <p className="card-text">{inventory.length}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 mb-3">
+                <div className="card text-white bg-danger">
+                  <div className="card-body">
+                    <h5 className="card-title">Low Stock Items</h5>
+                    <p className="card-text">{inventory.filter(item => item.stock < 50).length}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 mb-3">
+                <div className="card text-white bg-warning">
+                  <div className="card-body">
+                    <h5 className="card-title">Expiring Soon</h5>
+                    <p className="card-text">{inventory.filter(item => item.location.includes('day') && parseInt(item.location) < 10).length}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-3 mb-3">
+                <div className="card text-white bg-success">
+                  <div className="card-body">
+                    <h5 className="card-title">Total Stock Value</h5>
+                    <p className="card-text">₹{inventory.reduce((sum, item) => sum + item.stock, 0)}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div className="filter-group">
-            <label>Status:</label>
-            <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
-              {statuses.map(status => (
-                <option key={status} value={status}>{status}</option>
-              ))}
-            </select>
-          </div>
-
-          <div className="filter-group">
-            <label>Stock:</label>
-            <select value={filterStock} onChange={(e) => setFilterStock(e.target.value)}>
-              <option value="All">All Items</option>
-              <option value="Low">Low Stock</option>
-              <option value="Expiring">Expiring Soon</option>
-            </select>
+          <div className="d-flex justify-content-between mt-4">
+            <button className="btn btn-secondary"><Link to="/sales" className="text-white"><i className="fas fa-shopping-cart me-1"></i>Go to Sales</Link></button>
+            <button className="btn btn-danger"><Link to="/Logout" className="text-white"><i className="fas fa-sign-out-alt me-1"></i>Logout</Link></button>
           </div>
         </div>
       </div>
-
-      <div className="inventory-table-container">
-        <table className="inventory-table">
-          <thead>
-            <tr>
-              <th onClick={() => handleSort('id')}>#</th>
-              <th onClick={() => handleSort('description')}>Description</th>
-              <th onClick={() => handleSort('category')}>Category</th>
-              <th onClick={() => handleSort('location')}>Location/Ageing</th>
-              <th onClick={() => handleSort('status')}>Status</th>
-              <th onClick={() => handleSort('barcode')}>Barcode</th>
-              <th onClick={() => handleSort('city')}>City</th>
-              <th onClick={() => handleSort('stock')}>Stock</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredInventory.map(item => (
-              <tr key={item.id} className={item.stock < 50 ? 'low-stock' : ''}>
-                <td>{item.id}</td>
-                <td>{item.description}</td>
-                <td>{item.category}</td>
-                <td>{item.location}</td>
-                <td>
-                  <span className={`status-badge ${item.status.toLowerCase()}`}>
-                    {item.status}
-                  </span>
-                </td>
-                <td>{item.barcode}</td>
-                <td>{item.city}</td>
-                <td>{item.stock}</td>
-                <td>
-                  <button className="edit-btn">Edit</button>
-                  <button className="delete-btn">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="summary-section">
-        <div className="summary-card">
-          <h3>Total Items</h3>
-          <p>{inventory.length}</p>
-        </div>
-        <div className="summary-card">
-          <h3>Low Stock Items</h3>
-          <p>{inventory.filter(item => item.stock < 50).length}</p>
-        </div>
-        <div className="summary-card">
-          <h3>Expiring Soon</h3>
-          <p>{inventory.filter(item => item.location.includes('day') && parseInt(item.location) < 10).length}</p>
-        </div>
-        <div className="summary-card">
-          <h3>Total Stock Value</h3>
-          <p>₹{inventory.reduce((sum, item) => sum + item.stock, 0)}</p>
-        </div>
-      </div>
-      <button><Link to="/sales">Go to Sales</Link></button>
-      <br></br>
-     <button><Link to="/Logout">Logout</Link></button>
     </div>
-    </>
   );
 };
-
 
 
 

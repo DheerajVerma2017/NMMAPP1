@@ -3,6 +3,7 @@ import React from 'react'
 //import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 //import jwtDecode from 'jwt-decode';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 export const  Logout = () =>{
   const navigate =  useNavigate();
   const handleLogout = () => {
@@ -30,14 +31,16 @@ export const  Logout = () =>{
   // Call the handleLogout function when the component is rendered
   // Render the logout component
   return (
-    <div>
-        <h1>Logout</h1>
-        <h2>Services</h2>
-        <p>You are logged out. Please come back soon.</p>
-         <br/>
-        <button onClick={handleLogout}>Logout</button>
-
-     </div>
+    <div className="container-fluid py-5 d-flex justify-content-center align-items-center min-vh-100">
+      <div className="card p-4 shadow text-center" style={{ maxWidth: 400, width: '100%' }}>
+        <h1 className="mb-3">Logout</h1>
+        <h2 className="mb-3 h5">Services</h2>
+        <p className="mb-4">You are logged out. Please come back soon.</p>
+        <button onClick={handleLogout} className="btn btn-danger w-100">
+          <i className="fas fa-sign-out-alt me-2"></i>Logout
+        </button>
+      </div>
+    </div>
   );
 }
 
