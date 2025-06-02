@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Company.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-export const Company = () =>{
+export const Company = () => {
   const [formData, setFormData] = useState({
     companyName: 'NMM Company',
     taxType: 'GST (SGST+CGST,IGST)',
@@ -34,7 +34,7 @@ export const Company = () =>{
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
-    
+
     if (Object.keys(validationErrors).length === 0) {
       // Here you would typically send data to an API
       console.log('Form submitted:', formData);
@@ -61,7 +61,7 @@ export const Company = () =>{
       <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm">
         <div className="row g-3">
           {/* Row 1 */}
-          <div className="col-md-6">
+          <div className="col-md-4">
             <label htmlFor="companyName" className="form-label">Company Name*</label>
             <input
               type="text"
@@ -73,7 +73,7 @@ export const Company = () =>{
             />
             {errors.companyName && <div className="invalid-feedback">{errors.companyName}</div>}
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4">
             <label htmlFor="taxType" className="form-label">Tax Type*</label>
             <select
               id="taxType"
@@ -89,7 +89,7 @@ export const Company = () =>{
             {errors.taxType && <div className="invalid-feedback">{errors.taxType}</div>}
           </div>
           {/* Row 2 */}
-          <div className="col-md-6">
+          <div className="col-md-4">
             <label htmlFor="gstinNo" className="form-label">GSTIN No.</label>
             <input
               type="text"
@@ -102,20 +102,8 @@ export const Company = () =>{
             />
             {errors.gstinNo && <div className="invalid-feedback">{errors.gstinNo}</div>}
           </div>
-          <div className="col-md-6">
-            <label htmlFor="logo" className="form-label">Company Logo</label>
-            <input
-              type="file"
-              id="logo"
-              name="logo"
-              onChange={handleChange}
-              accept="image/*"
-              className="form-control"
-            />
-            <div className="form-text">{formData.logo ? formData.logo.name : 'Choose File'}</div>
-          </div>
           {/* Row 3 */}
-          <div className="col-md-6">
+          <div className="col-md-4">
             <label className="form-label">State</label>
             <input
               type="text"
@@ -123,17 +111,9 @@ export const Company = () =>{
               readOnly
               className="form-control mb-2"
             />
-            <input
-              type="file"
-              id="sign"
-              name="sign"
-              onChange={handleChange}
-              accept="image/*"
-              className="form-control"
-            />
-            <div className="form-text">Sign</div>
+
           </div>
-          <div className="col-md-6">
+          <div className="col-md-8">
             <label htmlFor="address" className="form-label">Address</label>
             <input
               type="text"
@@ -220,8 +200,36 @@ export const Company = () =>{
               <option value="EST (America/New_York)">EST (America/New_York)</option>
             </select>
           </div>
+          <div className="col-md-6">
+            <div className="row">
+              <div className="col-6">
+                <label htmlFor="logo" className="form-label">Company Logo</label>
+                <input
+                  type="file"
+                  id="logo"
+                  name="logo"
+                  onChange={handleChange}
+                  accept="image/*"
+                  className="form-control"
+                />
+                <div className="form-text">{formData.logo ? formData.logo.name : 'Choose File'}</div>
+              </div>
+              <div className="col-6">
+                <label htmlFor="timeZone" className="form-label">Sign</label>
+                <input
+                  type="file"
+                  id="sign"
+                  name="sign"
+                  onChange={handleChange}
+                  accept="image/*"
+                  className="form-control"
+                />
+                <div className="form-text">Upload your signature image</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="d-flex gap-2 mt-4">
+        <div className="d-flex gap-2 mt-5 justify-content-center">
           <button type="submit" className="btn btn-success">
             <i className="fas fa-save me-2"></i>Save Company
           </button>

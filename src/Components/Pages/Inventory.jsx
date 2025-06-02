@@ -26,7 +26,7 @@ export const Inventory = () => {
     { id: 17, description: 'Kids Set Q-3', category: 'Kids Active Wear', location: '36 day', status: 'OK', barcode: 'A1045', city: '6 PC3', stock: 250 },
     { id: 18, description: 'Night Shift', category: 'General', location: '36 day', status: 'OK', barcode: 'A1045', city: '14 PC3', stock: 500 }
   ]);
-  
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('All');
   const [filterStatus, setFilterStatus] = useState('All');
@@ -59,13 +59,13 @@ export const Inventory = () => {
 
   const filteredInventory = inventory
     .filter(item => {
-      const matchesSearch = item.description.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          item.barcode.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.barcode.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = filterCategory === 'All' || item.category === filterCategory;
       const matchesStatus = filterStatus === 'All' || item.status === filterStatus;
-      const matchesStock = filterStock === 'All' || 
-                         (filterStock === 'Low' && item.stock < 50) || 
-                         (filterStock === 'Expiring' && item.location.includes('day') && parseInt(item.location) < 10);
+      const matchesStock = filterStock === 'All' ||
+        (filterStock === 'Low' && item.stock < 50) ||
+        (filterStock === 'Expiring' && item.location.includes('day') && parseInt(item.location) < 10);
 
       return matchesSearch && matchesCategory && matchesStatus && matchesStock;
     })
@@ -99,22 +99,25 @@ export const Inventory = () => {
             </button>
           </div>
           <div className="search-filter row mb-3">
-            <div className="col-md-4 mb-2">
-              <div className="input-group">
-                <span className="input-group-text"><FaSearch /></span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search description or barcode..."
-                  value={searchTerm}
-                  onChange={handleSearch}
-                />
+            <div className="col-md-6 mb-2">
+              <div className="form-group">
+                <label>Search</label>
+                <div className="input-group">
+                  <span className="input-group-text"><FaSearch /></span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search description or barcode..."
+                    value={searchTerm}
+                    onChange={handleSearch}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="col-md-2 mb-2">
               <div className="form-group">
-                <label>Category:</label>
+                <label>Category</label>
                 <select className="form-control" value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
                   {categories.map(category => (
                     <option key={category} value={category}>{category}</option>
@@ -125,7 +128,7 @@ export const Inventory = () => {
 
             <div className="col-md-2 mb-2">
               <div className="form-group">
-                <label>Status:</label>
+                <label>Status</label>
                 <select className="form-control" value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
                   {statuses.map(status => (
                     <option key={status} value={status}>{status}</option>
@@ -136,7 +139,7 @@ export const Inventory = () => {
 
             <div className="col-md-2 mb-2">
               <div className="form-group">
-                <label>Stock:</label>
+                <label>Stock</label>
                 <select className="form-control" value={filterStock} onChange={(e) => setFilterStock(e.target.value)}>
                   <option value="All">All Items</option>
                   <option value="Low">Low Stock</option>

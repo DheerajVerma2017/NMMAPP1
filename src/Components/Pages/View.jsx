@@ -229,7 +229,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
                   <Link to="/Logout" className="text-white text-decoration-none">Logout</Link>
                 </button>
               </div>
-              <div className="action-buttons">
+              <div className="action-buttons mt-3">
                 <button className="print-btn"><i className="fas fa-print me-1"></i>Print</button>
                 <button className="export-btn"><i className="fas fa-file-excel me-1"></i>Export Excel</button>
                 <button className="report-btn"><i className="fas fa-file-alt me-1"></i>Excel Report</button>

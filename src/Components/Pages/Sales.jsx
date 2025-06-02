@@ -47,13 +47,13 @@ export const Sales = () => {
     const { name, value } = e.target;
     setFormData(prev => {
       const newItems = [...prev.items];
-      newItems[index] = { 
-        ...newItems[index], 
-        [name]: name === 'quantity' || name === 'gross' || name === 'salePrice' || name === 'gstPercent' 
-          ? parseFloat(value) || 0 
-          : value 
+      newItems[index] = {
+        ...newItems[index],
+        [name]: name === 'quantity' || name === 'gross' || name === 'salePrice' || name === 'gstPercent'
+          ? parseFloat(value) || 0
+          : value
       };
-      
+
       // Calculate total if price or quantity changes
       if (name === 'quantity' || name === 'salePrice') {
         newItems[index].gross = newItems[index].quantity * newItems[index].salePrice;
@@ -66,8 +66,8 @@ export const Sales = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      payment: { 
-        ...prev.payment, 
+      payment: {
+        ...prev.payment,
         [name]: parseFloat(value) || 0,
         total: prev.items.reduce((sum, item) => sum + item.gross, 0)
       }
@@ -147,7 +147,7 @@ export const Sales = () => {
         <div className="col-12">
           <h1 className="mb-4 text-center">Sales Entry</h1>
           <form className="bg-white p-4 rounded shadow-sm" onSubmit={handleSubmit}>
-            <div className="form-section">
+            <div>
               <div className="row">
                 {/* Column 1 */}
                 <div className="col-md-4">
@@ -233,7 +233,7 @@ export const Sales = () => {
                       <option value="Puducherry (34)">Puducherry (34)</option>
                       <option value="Andaman and Nicobar Islands (35)">Andaman and Nicobar Islands (35)</option>
                       <option value="Telangana (36)">Telangana (36)</option>
-                      <option value="Andhra Pradesh (37)">Andhra Pradesh (37)</option>  
+                      <option value="Andhra Pradesh (37)">Andhra Pradesh (37)</option>
                       {/* Add other states as needed */}
                     </select>
                   </div>
@@ -306,62 +306,62 @@ export const Sales = () => {
             </div>
 
             <div className="payment-section mt-4">
-          <div className="d-flex justify-content-between align-items-center mb-2">
-            <h3>PAYMENT</h3>
-            <div>
-              <button type="button" onClick={holdCurrentItems} className="btn btn-warning me-2">
-                <FaPause className="me-1" /> Hold ({formData.holdItems.length})
-              </button>
-              <button type="button" onClick={viewHoldItems} className="btn btn-info">
-                <FaEye className="me-1" /> View
-              </button>
-            </div>
-          </div>
-          <div className="row g-3">
-            <div className="col-md-4">
-              <label className="form-label">Expense</label>
-              <div className="input-group">
-                <span className="input-group-text"><FaRupeeSign /></span>
-                <input type="number" className="form-control" name="expense" min="0" value={formData.payment.expense} onChange={handlePaymentChange} />
+              <div className="d-flex justify-content-between align-items-center mb-2">
+                <h3>PAYMENT</h3>
+                <div>
+                  <button type="button" onClick={holdCurrentItems} className="btn btn-warning me-2">
+                    <FaPause className="me-1" /> Hold ({formData.holdItems.length})
+                  </button>
+                  <button type="button" onClick={viewHoldItems} className="btn btn-info">
+                    <FaEye className="me-1" /> View
+                  </button>
+                </div>
+              </div>
+              <div className="row g-3">
+                <div className="col-md-4">
+                  <label className="form-label">Expense</label>
+                  <div className="input-group">
+                    <span className="input-group-text"><FaRupeeSign /></span>
+                    <input type="number" className="form-control" name="expense" min="0" value={formData.payment.expense} onChange={handlePaymentChange} />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <label className="form-label">Savings</label>
+                  <div className="input-group">
+                    <span className="input-group-text"><FaRupeeSign /></span>
+                    <input type="number" className="form-control" name="savings" min="0" value={formData.payment.savings} onChange={handlePaymentChange} />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <label className="form-label">Invoice Total</label>
+                  <div className="input-group">
+                    <span className="input-group-text"><FaRupeeSign /></span>
+                    <input type="text" className="form-control" value={formData.payment.total.toFixed(2)} readOnly />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <label className="form-label">Cash</label>
+                  <div className="input-group">
+                    <span className="input-group-text"><FaRupeeSign /></span>
+                    <input type="number" className="form-control" name="cash" min="0" value={formData.payment.cash} onChange={handlePaymentChange} />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <label className="form-label">Card</label>
+                  <div className="input-group">
+                    <span className="input-group-text"><FaCreditCard /></span>
+                    <input type="number" className="form-control" name="card" min="0" value={formData.payment.card} onChange={handlePaymentChange} />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <label className="form-label">UPI</label>
+                  <div className="input-group">
+                    <span className="input-group-text"><FaQrcode /></span>
+                    <input type="number" className="form-control" name="upi" min="0" value={formData.payment.upi} onChange={handlePaymentChange} />
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="col-md-4">
-              <label className="form-label">Savings</label>
-              <div className="input-group">
-                <span className="input-group-text"><FaRupeeSign /></span>
-                <input type="number" className="form-control" name="savings" min="0" value={formData.payment.savings} onChange={handlePaymentChange} />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <label className="form-label">Invoice Total</label>
-              <div className="input-group">
-                <span className="input-group-text"><FaRupeeSign /></span>
-                <input type="text" className="form-control" value={formData.payment.total.toFixed(2)} readOnly />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <label className="form-label">Cash</label>
-              <div className="input-group">
-                <span className="input-group-text"><FaRupeeSign /></span>
-                <input type="number" className="form-control" name="cash" min="0" value={formData.payment.cash} onChange={handlePaymentChange} />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <label className="form-label">Card</label>
-              <div className="input-group">
-                <span className="input-group-text"><FaCreditCard /></span>
-                <input type="number" className="form-control" name="card" min="0" value={formData.payment.card} onChange={handlePaymentChange} />
-              </div>
-            </div>
-            <div className="col-md-4">
-              <label className="form-label">UPI</label>
-              <div className="input-group">
-                <span className="input-group-text"><FaQrcode /></span>
-                <input type="number" className="form-control" name="upi" min="0" value={formData.payment.upi} onChange={handlePaymentChange} />
-              </div>
-            </div>
-          </div>
-        </div>
 
             <div className="form-actions d-flex gap-2 mt-4">
               <button type="submit" className="btn btn-success">Save Sale</button>
