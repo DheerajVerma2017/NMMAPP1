@@ -63,7 +63,7 @@ export const Settings = () => {
   );
 
   return (
-    <div className="container-fluid py-4 settings-container">
+    <div className="container-fluid settings-container">
       <h1 className="mb-4 text-center settings-title">
         <i className="fas fa-cogs me-2 text-primary"></i>Settings
       </h1>

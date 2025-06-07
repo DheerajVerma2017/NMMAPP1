@@ -80,7 +80,7 @@ export const Inventory = () => {
     });
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4 text-center">Inventory</h1>
@@ -179,12 +179,12 @@ export const Inventory = () => {
                     <td>{item.city}</td>
                     <td>{item.stock}</td>
                     <td>
-                      <button className="btn btn-warning btn-sm me-1">
+                      <div className='d-flex'><button className="btn btn-warning btn-sm me-1">
                         <i className="fas fa-edit"></i>
                       </button>
-                      <button className="btn btn-danger btn-sm">
-                        <i className="fas fa-trash-alt"></i>
-                      </button>
+                        <button className="btn btn-danger btn-sm">
+                          <i className="fas fa-trash-alt"></i>
+                        </button></div>
                     </td>
                   </tr>
                 ))}

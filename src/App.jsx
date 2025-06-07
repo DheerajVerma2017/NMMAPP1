@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Sidebar } from "./Components/Sidebar";
+import { Navbar } from "./Components/Navbar";
 import 'bootstrap/dist/css/bootstrap.css';
 import { Dashboard, Purchase, Inventory, Sales, Billprint,  View, Company, Settings, Login, Signup, Logout,} from "./Components/Pages/Index";
 // import { Dashboard } from "./Components/Pages/Dashboard";
@@ -9,9 +9,9 @@ import { Dashboard, Purchase, Inventory, Sales, Billprint,  View, Company, Setti
 function App () {
  return (
     <>
-    <div className="App d-flex flex-row min-vh-100">
-      <Sidebar/>
-      <div className="main-content flex-grow-1 bg-light p-4">
+    <div className="App d-flex flex-column min-vh-100">
+      <Navbar/>
+      <div className="main-content flex-grow-1 bg-light p-4" style={{marginTop: '64px'}}>
         <Routes>
           <Route path="/" element={<Dashboard/>}/>
           <Route path="/purchase" element={<Purchase/>}/>

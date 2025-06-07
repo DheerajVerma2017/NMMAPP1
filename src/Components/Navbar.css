@@ -2,15 +2,18 @@
     background-color: #1dd84f;
 }
 
-nav {
+nav.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #4883ef;
     /* background-color: #255cc1fd; */
     color: #ffffff;
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
 }
 
 nav .title {
@@ -59,7 +62,6 @@ nav .menu span {
     background-color: #fff;
     border-radius: 0.2rem;
 }
-
 
 @media (max-width: 480px) {
     nav .menu {

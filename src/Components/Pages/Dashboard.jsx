@@ -64,7 +64,7 @@ export const Dashboard = () => {
   const maxValue = Math.max(...chartData.map(item => Math.max(item.value, item.sales, item.purchases)));
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-12">
           <h1 className="dashboard-title text-center mb-4">Purchase - Sales Dashboard</h1>

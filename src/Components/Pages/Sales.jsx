@@ -142,7 +142,7 @@ export const Sales = () => {
   };
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-12">
           <h1 className="mb-4 text-center">Sales Entry</h1>
@@ -240,7 +240,54 @@ export const Sales = () => {
                 </div>
               </div>
             </div>
-            <div className="items-section mt-4">
+            <div className="table-responsive">
+              <table className="table table-bordered align-middle">
+                <thead className="table-light">
+                  <tr>
+                    <th>#</th>
+                    <th>Barcode</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Unit</th>
+                    <th>Qty</th>
+                    <th>Gross</th>
+                    <th>Sale Price</th>
+                    <th>HSN</th>
+                    <th>GST%</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td><input type="text" className="form-control form-control-sm" name="barcode" /></td>
+                    <td><input type="text" className="form-control form-control-sm" name="description" /></td>
+                    <td>
+                      <select className="form-select form-select-sm" name="category">
+                        <option value="General">General</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="WomenWear">Women Wear</option>
+                        <option value="MenWear">Men Wear</option>
+                        <option value="FootWear">Foot Wear</option>
+                        <option value="KidsWear">Kids Wear</option>
+                        <option value="Accessories">Accessories</option>
+                      </select>
+                    </td>
+                    <td><input type="text" className="form-control form-control-sm" name="unit" /></td>
+                    <td><input type="number" className="form-control form-control-sm" name="quantity" min="1" /></td>
+                    <td></td>
+                    <td><input type="number" className="form-control form-control-sm" name="salePrice" min="0" step="0.01" /></td>
+                    <td><input type="text" className="form-control form-control-sm" name="hsn" /></td>
+                    <td><input type="number" className="form-control form-control-sm" name="gstPercent" min="0" max="100" /></td>
+                    <td>
+                      <button type="button" className="btn btn-primary btn-sm">Add</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-4">
               <div className="d-flex justify-content-between align-items-center mb-2">
                 <h3>Add New ITEMS</h3>
                 <div>
@@ -257,15 +304,18 @@ export const Sales = () => {
                   <thead className="table-light">
                     <tr>
                       <th>#</th>
-                      <th>Barcode</th>
                       <th>Description</th>
-                      <th>Category</th>
-                      <th>Unit</th>
-                      <th>Qty</th>
+                      <th>Locate</th>
+                      <th>Offers</th>
+                      <th>MRP</th>
                       <th>Gross</th>
-                      <th>Sale Price</th>
-                      <th>HSN</th>
+                      <th>Net Qty</th>
+                      <th>Price</th>
+                      <th>Rate</th>
+                      <th>Value</th>
+                      <th>Dics.</th>
                       <th>GST%</th>
+                      <th>Total Value</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -273,30 +323,121 @@ export const Sales = () => {
                     {formData.items.map((item, index) => (
                       <tr key={index}>
                         <td>{index + 1}</td>
-                        <td><input type="text" className="form-control form-control-sm" name="barcode" value={item.barcode} onChange={(e) => handleItemChange(index, e)} /></td>
-                        <td><input type="text" className="form-control form-control-sm" name="description" value={item.description} onChange={(e) => handleItemChange(index, e)} /></td>
                         <td>
-                          <select className="form-select form-select-sm" name="category" value={item.category} onChange={(e) => handleItemChange(index, e)}>
-                            <option value="General">General</option>
-                            <option value="Clothing">Clothing</option>
-                            <option value="Fashion">Fashion</option>
-                            <option value="WomenWear">Women Wear</option>
-                            <option value="MenWear">Men Wear</option>
-                            <option value="FootWear">Foot Wear</option>
-                            <option value="KidsWear">Kids Wear</option>
-                            <option value="Accessories">Accessories</option>
-                          </select>
+                          <input
+                            type="text"
+                            className="form-control form-control-sm"
+                            name="description"
+                            value={item.description}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
                         </td>
-                        <td><input type="text" className="form-control form-control-sm" name="unit" value={item.unit} onChange={(e) => handleItemChange(index, e)} /></td>
-                        <td><input type="number" className="form-control form-control-sm" name="quantity" min="1" value={item.quantity} onChange={(e) => handleItemChange(index, e)} /></td>
-                        <td>{item.gross.toFixed(2)}</td>
-                        <td><input type="number" className="form-control form-control-sm" name="salePrice" min="0" step="0.01" value={item.salePrice} onChange={(e) => handleItemChange(index, e)} /></td>
-                        <td><input type="text" className="form-control form-control-sm" name="hsn" value={item.hsn} onChange={(e) => handleItemChange(index, e)} /></td>
-                        <td><input type="number" className="form-control form-control-sm" name="gstPercent" min="0" max="100" value={item.gstPercent} onChange={(e) => handleItemChange(index, e)} /></td>
                         <td>
-                          {formData.items.length > 1 && (
-                            <button type="button" onClick={() => removeItem(index)} className="btn btn-danger btn-sm">×</button>
-                          )}
+                          <input
+                            type="text"
+                            className="form-control form-control-sm"
+                            name="locate"
+                            value={item.locate}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            className="form-control form-control-sm"
+                            name="offers"
+                            value={item.offers}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="mrp"
+                            value={item.mrp}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="gross"
+                            value={item.gross}
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="quantity"
+                            value={item.quantity}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="salePrice"
+                            value={item.salePrice}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            className="form-control form-control-sm"
+                            name="rate"
+                            value={item.rate}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="value"
+                            value={item.value}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="discount"
+                            value={item.discount}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="gstPercent"
+                            value={item.gstPercent}
+                            onChange={(e) => handleItemChange(index, e)}
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control form-control-sm"
+                            name="totalValue"
+                            value={item.totalValue}
+                            readOnly
+                          />
+                        </td>
+                        <td>
+                          <div className='d-flex'><button className="btn btn-warning btn-sm me-1">
+                            <i className="fas fa-edit"></i>
+                          </button>
+                            <button className="btn btn-danger btn-sm">
+                              <i className="fas fa-trash-alt"></i>
+                            </button></div>
                         </td>
                       </tr>
                     ))}
@@ -305,65 +446,56 @@ export const Sales = () => {
               </div>
             </div>
 
-            <div className="payment-section mt-4">
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <h3>PAYMENT</h3>
-                <div>
-                  <button type="button" onClick={holdCurrentItems} className="btn btn-warning me-2">
-                    <FaPause className="me-1" /> Hold ({formData.holdItems.length})
-                  </button>
-                  <button type="button" onClick={viewHoldItems} className="btn btn-info">
-                    <FaEye className="me-1" /> View
-                  </button>
-                </div>
-              </div>
-              <div className="row g-3">
-                <div className="col-md-4">
-                  <label className="form-label">Expense</label>
-                  <div className="input-group">
-                    <span className="input-group-text"><FaRupeeSign /></span>
-                    <input type="number" className="form-control" name="expense" min="0" value={formData.payment.expense} onChange={handlePaymentChange} />
+            <div className="payment-wrapper">
+              <div className="payment-section ms-auto">
+                <div className="form-row">
+                  <div className="form-group flex-row">
+                    <label>Payment in Cash</label>
+                    <input
+                      type="number"
+                      name="cash"
+                      value={formData.payment.cash}
+                      onChange={handlePaymentChange}
+                      className="form-control"
+                    />
+                  </div>
+                  <div className="form-group flex-row">
+                    <label>Payment in Card</label>
+                    <input
+                      type="number"
+                      name="card"
+                      value={formData.payment.card}
+                      onChange={handlePaymentChange}
+                      className="form-control"
+                    />
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <label className="form-label">Savings</label>
-                  <div className="input-group">
-                    <span className="input-group-text"><FaRupeeSign /></span>
-                    <input type="number" className="form-control" name="savings" min="0" value={formData.payment.savings} onChange={handlePaymentChange} />
+                <div className="form-row">
+                  <div className="form-group flex-row">
+                    <label>Payment in UPI</label>
+                    <input
+                      type="number"
+                      name="upi"
+                      value={formData.payment.upi}
+                      onChange={handlePaymentChange}
+                      className="form-control"
+                    />
                   </div>
-                </div>
-                <div className="col-md-4">
-                  <label className="form-label">Invoice Total</label>
-                  <div className="input-group">
-                    <span className="input-group-text"><FaRupeeSign /></span>
-                    <input type="text" className="form-control" value={formData.payment.total.toFixed(2)} readOnly />
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <label className="form-label">Cash</label>
-                  <div className="input-group">
-                    <span className="input-group-text"><FaRupeeSign /></span>
-                    <input type="number" className="form-control" name="cash" min="0" value={formData.payment.cash} onChange={handlePaymentChange} />
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <label className="form-label">Card</label>
-                  <div className="input-group">
-                    <span className="input-group-text"><FaCreditCard /></span>
-                    <input type="number" className="form-control" name="card" min="0" value={formData.payment.card} onChange={handlePaymentChange} />
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <label className="form-label">UPI</label>
-                  <div className="input-group">
-                    <span className="input-group-text"><FaQrcode /></span>
-                    <input type="number" className="form-control" name="upi" min="0" value={formData.payment.upi} onChange={handlePaymentChange} />
+                  <div className="form-group flex-row">
+                    <label className='fw-bold'>Payment Total</label>
+                    <input
+                      type="number"
+                      name="total"
+                      value={formData.payment.total}
+                      readOnly
+                      className="form-control"
+                    />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="form-actions d-flex gap-2 mt-4">
+            <div className="form-actions d-flex gap-2 mt-4 justify-content-end">
               <button type="submit" className="btn btn-success">Save Sale</button>
               <button type="button" className="btn btn-danger">Cancel</button>
             </div>

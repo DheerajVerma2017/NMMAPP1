@@ -5,26 +5,6 @@
   display: flex;
 }
 
-.main-content {
-  flex: 1;
-  background: transparent;
-  border-radius: var(--radius);
-  box-shadow: none;
-  padding: 2rem 1.5rem;
-  min-height: 100vh;
-  /* transition: background 0.2s; */
-}
-
-@media (max-width: 991px) {
-  .main-content {
-    padding: 1.25rem 0.5rem;
-  }
-}
-@media (max-width: 767px) {
-  .main-content {
-    padding: 0.5rem 0.2rem;
-  }
-}
 
 /* Layout.css */
 .pages-container {

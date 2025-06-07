@@ -108,7 +108,7 @@ export const Purchase = () => {
   };
 
   return (
-    <div className="container-fluid py-4">
+    <div className="container-fluid">
       <div className="row justify-content-center">
         <div className="col-lg-12">
           <h1 className="mb-4 text-center">Purchase Entry</h1>
