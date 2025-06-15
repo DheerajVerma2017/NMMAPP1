@@ -41,8 +41,8 @@ export const Settings = () => {
 
 
   const SettingRow = ({ label, type }) => (
-    <div className="col-md-6 col-lg-4 mb-4">
-      <div className="card h-100 shadow-sm border-0">
+    <div className="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <div className="card h-100 shadow-lg border-0">
         <div className="card-body d-flex flex-column gap-2">
           <label className="form-label fw-semibold mb-1">{label}</label>
           {type === "select" ? (

@@ -145,98 +145,88 @@ export const Sales = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-12">
-          <h1 className="mb-4 text-center">Sales Entry</h1>
           <form className="bg-white p-4 rounded shadow-sm" onSubmit={handleSubmit}>
             <div>
               <div className="row">
-                {/* Column 1 */}
-                <div className="col-md-4">
-                  <div className="mb-3">
-                    <label className="form-label">Type</label>
-                    <select className="form-select" name="type" value={formData.type} onChange={handleChange}>
-                      <option value="Sales">Sales</option>
-                      <option value="Return">Return</option>
-                      <option value="Exchange">Exchange</option>
-                      <option value="Credit Note">Credit Note</option>
-                      <option value="Debit Note">Debit Note</option>
-                      <option value="Gift Voucher">Gift Voucher</option>
-                    </select>
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Ref.</label>
-                    <input type="text" className="form-control" name="refNo" value={formData.refNo} onChange={handleChange} />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Ship</label>
-                    <input type="text" className="form-control" name="shipTo" value={formData.shipTo} onChange={handleChange} />
-                  </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Type</label>
+                  <select className="form-select" name="type" value={formData.type} onChange={handleChange}>
+                    <option value="Sales">Sales</option>
+                    <option value="Return">Return</option>
+                    <option value="Exchange">Exchange</option>
+                    <option value="Credit Note">Credit Note</option>
+                    <option value="Debit Note">Debit Note</option>
+                    <option value="Gift Voucher">Gift Voucher</option>
+                  </select>
                 </div>
-                {/* Column 2 */}
-                <div className="col-md-4">
-                  <div className="mb-3">
-                    <label className="form-label">Name</label>
-                    <input type="text" className="form-control" name="name" value={formData.name} onChange={handleChange} />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Mobile</label>
-                    <input type="text" className="form-control" name="mobile" value={formData.mobile} onChange={handleChange} />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Address</label>
-                    <textarea className="form-control" name="address" value={formData.address} onChange={handleChange} />
-                  </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Ref.</label>
+                  <input type="text" className="form-control" name="refNo" value={formData.refNo} onChange={handleChange} />
                 </div>
-                {/* Column 3 */}
-                <div className="col-md-4">
-                  <div className="mb-3">
-                    <label className="form-label">Invoice</label>
-                    <input type="text" className="form-control" name="invoiceNo" value={formData.invoiceNo} onChange={handleChange} />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">Date</label>
-                    <input type="date" className="form-control" name="date" value={formData.date} onChange={handleChange} />
-                  </div>
-                  <div className="mb-3">
-                    <label className="form-label">State</label>
-                    <select className="form-select" name="state" value={formData.state} onChange={handleChange}>
-                      <option value="Jammu and Kashmir (01)">Jammu and Kashmir (01)</option>
-                      <option value="Himachal Pradesh (02)">Himachal Pradesh (02)</option>
-                      <option value="Punjab (03)">Punjab (03)</option>
-                      <option value="Chandigarh (04)">Chandigarh (04)</option>
-                      <option value="Uttarakhand (05)">Uttarakhand (05)</option>
-                      <option value="Haryana (06)">Haryana (06)</option>
-                      <option value="Delhi (07)">Delhi (07)</option>
-                      <option value="Rajasthan (08)">Rajasthan (08)</option>
-                      <option value="Uttar Pradesh (09)">Uttar Pradesh (09)</option>
-                      <option value="Bihar (11)">Bihar (11)</option>
-                      <option value="Sikkim (12)">Sikkim (12)</option>
-                      <option value="Arunachal Pradesh (13)">Arunachal Pradesh (13)</option>
-                      <option value="Nagaland (14)">Nagaland (14)</option>
-                      <option value="Manipur (15)">Manipur (15)</option>
-                      <option value="Mizoram (16)">Mizoram (16)</option>
-                      <option value="Tripura (17)">Tripura (17)</option>
-                      <option value="Assam (18)">Assam (18)</option>
-                      <option value="West Bengal (19)">West Bengal (19)</option>
-                      <option value="Jharkhand (20)">Jharkhand (20)</option>
-                      <option value="Odisha (21)">Odisha (21)</option>
-                      <option value="Chhattisgarh (22)">Chhattisgarh (22)</option>
-                      <option value="Madhya Pradesh (23)">Madhya Pradesh (23)</option>
-                      <option value="Gujarat (24)">Gujarat (24)</option>
-                      <option value="Daman and Diu (25)">Daman and Diu (25)</option>
-                      <option value="Dadra and Nagar Haveli (26)">Dadra and Nagar Haveli (26)</option>
-                      <option value="Maharashtra (27)">Maharashtra (27)</option>
-                      <option value="Karnataka (29)">Karnataka (29)</option>
-                      <option value="Goa (30)">Goa (30)</option>
-                      <option value="Lakshadweep (31)">Lakshadweep (31)</option>
-                      <option value="Kerala (32)">Kerala (32)</option>
-                      <option value="Tamil Nadu (33)">Tamil Nadu (33)</option>
-                      <option value="Puducherry (34)">Puducherry (34)</option>
-                      <option value="Andaman and Nicobar Islands (35)">Andaman and Nicobar Islands (35)</option>
-                      <option value="Telangana (36)">Telangana (36)</option>
-                      <option value="Andhra Pradesh (37)">Andhra Pradesh (37)</option>
-                      {/* Add other states as needed */}
-                    </select>
-                  </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Ship</label>
+                  <input type="text" className="form-control" name="shipTo" value={formData.shipTo} onChange={handleChange} />
+                </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Name</label>
+                  <input type="text" className="form-control" name="name" value={formData.name} onChange={handleChange} />
+                </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Mobile</label>
+                  <input type="text" className="form-control" name="mobile" value={formData.mobile} onChange={handleChange} />
+                </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Invoice</label>
+                  <input type="text" className="form-control" name="invoiceNo" value={formData.invoiceNo} onChange={handleChange} />
+                </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">Date</label>
+                  <input type="date" className="form-control" name="date" value={formData.date} onChange={handleChange} />
+                </div>
+                <div className="col-md-2 mb-3">
+                  <label className="form-label">State</label>
+                  <select className="form-select" name="state" value={formData.state} onChange={handleChange}>
+                    <option value="Jammu and Kashmir (01)">Jammu and Kashmir (01)</option>
+                    <option value="Himachal Pradesh (02)">Himachal Pradesh (02)</option>
+                    <option value="Punjab (03)">Punjab (03)</option>
+                    <option value="Chandigarh (04)">Chandigarh (04)</option>
+                    <option value="Uttarakhand (05)">Uttarakhand (05)</option>
+                    <option value="Haryana (06)">Haryana (06)</option>
+                    <option value="Delhi (07)">Delhi (07)</option>
+                    <option value="Rajasthan (08)">Rajasthan (08)</option>
+                    <option value="Uttar Pradesh (09)">Uttar Pradesh (09)</option>
+                    <option value="Bihar (11)">Bihar (11)</option>
+                    <option value="Sikkim (12)">Sikkim (12)</option>
+                    <option value="Arunachal Pradesh (13)">Arunachal Pradesh (13)</option>
+                    <option value="Nagaland (14)">Nagaland (14)</option>
+                    <option value="Manipur (15)">Manipur (15)</option>
+                    <option value="Mizoram (16)">Mizoram (16)</option>
+                    <option value="Tripura (17)">Tripura (17)</option>
+                    <option value="Assam (18)">Assam (18)</option>
+                    <option value="West Bengal (19)">West Bengal (19)</option>
+                    <option value="Jharkhand (20)">Jharkhand (20)</option>
+                    <option value="Odisha (21)">Odisha (21)</option>
+                    <option value="Chhattisgarh (22)">Chhattisgarh (22)</option>
+                    <option value="Madhya Pradesh (23)">Madhya Pradesh (23)</option>
+                    <option value="Gujarat (24)">Gujarat (24)</option>
+                    <option value="Daman and Diu (25)">Daman and Diu (25)</option>
+                    <option value="Dadra and Nagar Haveli (26)">Dadra and Nagar Haveli (26)</option>
+                    <option value="Maharashtra (27)">Maharashtra (27)</option>
+                    <option value="Karnataka (29)">Karnataka (29)</option>
+                    <option value="Goa (30)">Goa (30)</option>
+                    <option value="Lakshadweep (31)">Lakshadweep (31)</option>
+                    <option value="Kerala (32)">Kerala (32)</option>
+                    <option value="Tamil Nadu (33)">Tamil Nadu (33)</option>
+                    <option value="Puducherry (34)">Puducherry (34)</option>
+                    <option value="Andaman and Nicobar Islands (35)">Andaman and Nicobar Islands (35)</option>
+                    <option value="Telangana (36)">Telangana (36)</option>
+                    <option value="Andhra Pradesh (37)">Andhra Pradesh (37)</option>
+                    {/* Add other states as needed */}
+                  </select>
+                </div>
+                <div className="col-md-4 mb-3">
+                  <label className="form-label">Address</label>
+                  <textarea className="form-control" name="address" value={formData.address} onChange={handleChange} />
                 </div>
               </div>
             </div>
@@ -288,17 +278,6 @@ export const Sales = () => {
               </table>
             </div>
             <div className="mt-4">
-              <div className="d-flex justify-content-between align-items-center mb-2">
-                <h3>Add New ITEMS</h3>
-                <div>
-                  <button type="button" onClick={addItem} className="btn btn-primary me-2">
-                    + Add New Item
-                  </button>
-                  <button type="button" onClick={importFromExcel} className="btn btn-success">
-                    <FaFileExcel className="me-1" />EXCEL IMPORT FILE
-                  </button>
-                </div>
-              </div>
               <div className="table-responsive">
                 <table className="table table-bordered align-middle">
                   <thead className="table-light">
@@ -448,9 +427,10 @@ export const Sales = () => {
 
             <div className="payment-wrapper">
               <div className="payment-section ms-auto">
-                <div className="form-row">
-                  <div className="form-group flex-row">
-                    <label>Payment in Cash</label>
+                <div className="form-col">
+                  <h5>Payment</h5>
+                  <div className="form-group flex-row align-items-center">
+                    <label>Cash</label>
                     <input
                       type="number"
                       name="cash"
@@ -459,8 +439,8 @@ export const Sales = () => {
                       className="form-control"
                     />
                   </div>
-                  <div className="form-group flex-row">
-                    <label>Payment in Card</label>
+                  <div className="form-group flex-row align-items-center">
+                    <label>Card</label>
                     <input
                       type="number"
                       name="card"
@@ -469,10 +449,8 @@ export const Sales = () => {
                       className="form-control"
                     />
                   </div>
-                </div>
-                <div className="form-row">
-                  <div className="form-group flex-row">
-                    <label>Payment in UPI</label>
+                  <div className="form-group flex-row align-items-center">
+                    <label>UPI</label>
                     <input
                       type="number"
                       name="upi"
@@ -481,8 +459,8 @@ export const Sales = () => {
                       className="form-control"
                     />
                   </div>
-                  <div className="form-group flex-row">
-                    <label className='fw-bold'>Payment Total</label>
+                  <div className="form-group flex-row align-items-center">
+                    <label className='fw-bold'>Total</label>
                     <input
                       type="number"
                       name="total"
@@ -491,7 +469,7 @@ export const Sales = () => {
                       className="form-control"
                     />
                   </div>
-                </div>
+                </div>                
               </div>
             </div>
 

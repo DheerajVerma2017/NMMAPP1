@@ -112,12 +112,67 @@ tr:hover {
 }
 
 @media (max-width: 900px) {
-  .sales-view-container {
+  .sales-view-container, .purchase-view-container {
     padding: 1rem 0.5rem;
   }
   .info-row {
     flex-direction: column;
     gap: 0.5rem;
+  }
+  .customer-info, .card, .header-section {
+    padding: 1rem;
+  }
+  .tabs-section button {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .dropdown, .dropdown-toggle, .dropdown-menu {
+    width: 100%;
+  }
+  .navigation-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nav-btn {
+    width: 100%;
+  }
+  .totals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .table-header, .table-container, .purchase-table, .sales-table-section {
+    overflow-x: auto;
+    font-size: 0.95rem;
+  }
+}
+@media (max-width: 480px) {
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .action-buttons button {
+    width: 100%;
+    margin-right: 0;
+  }
+  .totals-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-section h1, .header h1 {
+    font-size: 1.2rem;
+  }
+  .customer-info, .card, .header-section {
+    padding: 0.5rem;
+  }
+  th, td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
   }
 }
 

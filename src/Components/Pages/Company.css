@@ -43,6 +43,7 @@
   margin-bottom: 0.5rem;
   font-weight: 500;
   color: var(--text-color);
+  min-width: 40px;
 }
 
 .form-group input,
@@ -120,11 +121,24 @@
   background: #dbeafe;
 }
 
+/* Responsive adjustments for Company page */
 @media (max-width: 900px) {
   .company-container {
     padding: 1rem 0.5rem;
   }
   .form-grid {
     gap: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .company-container {
+    padding: 0.5rem 0.2rem;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  .company-container h1 {
+    font-size: 1.2rem;
   }
 }

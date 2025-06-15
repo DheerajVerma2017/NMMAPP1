@@ -206,7 +206,7 @@
   color: #7f8c8d;
   margin-top: 0;
   margin-bottom: 10px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .summary-card p {
@@ -222,7 +222,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 900px) {
   .toolbar, .search-filter {
     flex-direction: column;
@@ -232,7 +231,6 @@
     padding: 1rem 0.5rem;
   }
 }
-
 @media (max-width: 768px) {
   .toolbar {
     flex-direction: column;
@@ -262,7 +260,6 @@
     font-size: 0.8rem;
   }
 }
-
 @media (max-width: 480px) {
   .summary-section {
     grid-template-columns: 1fr;

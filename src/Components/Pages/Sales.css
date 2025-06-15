@@ -42,6 +42,7 @@
   font-weight: 500;
   color: #222;
   font-size: 1rem;
+  min-width: 40px;
 }
 
 .form-group input,
@@ -129,6 +130,7 @@
   background: #c0392b;
 }
 
+/* Responsive adjustments for Sales page */
 @media (max-width: 900px) {
   .form-row {
     flex-direction: column;
@@ -136,6 +138,18 @@
   }
   .sales-container {
     padding: 1rem 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .sales-container h1 {
+    font-size: 1.2rem;
+  }
+  .form-group label {
+    font-size: 0.95rem;
+  }
+  .form-group input, .form-group select {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
   }
 }
 

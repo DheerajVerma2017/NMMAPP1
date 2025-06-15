@@ -35,7 +35,7 @@ body, .settings-container {
   /* transform: translateY(-2px) scale(1.01); */
 }
 .card-body {
-  padding: 1.5rem 1rem 1.5rem 1rem;
+  padding: 1rem;
 }
 .form-label {
   color: #2563eb;
@@ -44,8 +44,7 @@ body, .settings-container {
 }
 .form-select, .form-control {
   border-radius: 0.75rem;
-  font-size: 1rem;
-  min-height: 2.5rem;
+  font-size: .9rem;  
   box-shadow: 0 1px 2px 0 rgba(37,99,235,0.04);
   border: 1px solid #e0e7ef;
 }
@@ -65,7 +64,7 @@ body, .settings-container {
   padding: 1.25rem 0.5rem;
 }
 .settings-savebar .btn {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   box-shadow: 0 2px 8px 0 rgba(37,99,235,0.08);
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
@@ -148,9 +147,10 @@ body, .settings-container {
   background-color: #2563eb;
 }
 
+/* Responsive adjustments for Settings page */
 @media (max-width: 991px) {
   .card-body {
-    padding: 1.25rem 1rem 1rem 1rem;
+    padding: 1rem;
   }
 }
 @media (max-width: 767px) {
@@ -160,5 +160,13 @@ body, .settings-container {
   .settings-savebar {
     border-radius: 1.25rem;
     padding: 0.75rem 0.25rem;
+  }
+}
+@media (max-width: 600px) {
+  .settings-title {
+    font-size: 1.1rem;
+  }
+  .settings-container {
+    padding: 0.5rem 0.2rem;
   }
 }
