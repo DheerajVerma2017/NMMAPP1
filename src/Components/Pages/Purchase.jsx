@@ -112,7 +112,7 @@ export const Purchase = () => {
       <div className="row justify-content-center">
         <div className="col-lg-12">
           <h1 className="mb-4 text-center">Purchase Entry</h1>
-          <form className="bg-white p-4 rounded shadow-sm" onSubmit={handleSubmit}>
+          <form className="bg-white p-2 rounded shadow-sm" onSubmit={handleSubmit}>
             <div className="form-section">
               <div className="form-row">
                 <div className="form-group">

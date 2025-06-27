@@ -145,10 +145,10 @@ export const Sales = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-12">
-          <form className="bg-white p-4 rounded shadow-sm" onSubmit={handleSubmit}>
+          <form className="bg-white p-2 rounded shadow-sm" onSubmit={handleSubmit}>
             <div>
               <div className="row">
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Type</label>
                   <select className="form-select" name="type" value={formData.type} onChange={handleChange}>
                     <option value="Sales">Sales</option>
@@ -159,31 +159,31 @@ export const Sales = () => {
                     <option value="Gift Voucher">Gift Voucher</option>
                   </select>
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Ref.</label>
                   <input type="text" className="form-control" name="refNo" value={formData.refNo} onChange={handleChange} />
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Ship</label>
                   <input type="text" className="form-control" name="shipTo" value={formData.shipTo} onChange={handleChange} />
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Name</label>
                   <input type="text" className="form-control" name="name" value={formData.name} onChange={handleChange} />
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Mobile</label>
                   <input type="text" className="form-control" name="mobile" value={formData.mobile} onChange={handleChange} />
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Invoice</label>
                   <input type="text" className="form-control" name="invoiceNo" value={formData.invoiceNo} onChange={handleChange} />
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">Date</label>
                   <input type="date" className="form-control" name="date" value={formData.date} onChange={handleChange} />
                 </div>
-                <div className="col-md-2 mb-3">
+                <div className="col-md-2 mb-1">
                   <label className="form-label">State</label>
                   <select className="form-select" name="state" value={formData.state} onChange={handleChange}>
                     <option value="Jammu and Kashmir (01)">Jammu and Kashmir (01)</option>
@@ -226,7 +226,7 @@ export const Sales = () => {
                 </div>
                 <div className="col-md-4 mb-3">
                   <label className="form-label">Address</label>
-                  <textarea className="form-control" name="address" value={formData.address} onChange={handleChange} />
+                  <textarea className="form-control" name="address" rows={1} value={formData.address} onChange={handleChange} />
                 </div>
               </div>
             </div>

@@ -58,7 +58,7 @@ export const Company = () => {
   return (
     <div className="container-fluid">
       <h1 className="mb-4 text-center">Company Details</h1>
-      <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow-sm">
+      <form onSubmit={handleSubmit} className="bg-white p-2 rounded shadow-sm">
         <div className="row g-3">
           {/* Row 1 */}
           <div className="col-md-4">
