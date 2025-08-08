@@ -1,24 +1,28 @@
-/*
-Layout.css 
+/* Minimalistic Layout Styles */
+.layout-root {
+  min-height: 100vh;
+  background: transparent;
+  display: flex;
+}
+
+
+/* Layout.css: Minimal custom, rely on Bootstrap for grid and spacing */
 .pages-container {
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: margin 0.2s;
+}
+
+@media (max-width: 768px) {
+  .pages-container {
+    margin-left: 0;
   }
-  
-  .home-pages {
-    background-image: url('./images/home-bg.jpg');
-  }
-  
-  .about-pages{
-    background-image: url('./images/about-bg.jpg');
-  }
-  
-  .contact-pages{
-    background-image: url('./images/contact-bg.jpg');
-  }
-    
-/* Navbar.css */
-/* 
- */
+}
+
+.home-pages {
+  background-image: url('../images/home-bg.jpg');
+}
+
+/* Remove left margin for sidebar, use Bootstrap grid */

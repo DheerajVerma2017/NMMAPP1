@@ -1,10 +1,11 @@
-
 //import React from "react"
 import React, { useState } from "react";
 import { Link, useNavigate} from "react-router-dom";
 //import { FiMail, FiKey} from 'react-icons/fi';
 //import "../App.css";
 import Axios from "axios";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 export const Login = () => {
   const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -41,28 +42,48 @@ export const Login = () => {
     
   return (
    <>  
-     <div className="login-container">
-        <form className="sign-up-form" onSubmit={handleSubmit}>
-            <h2>Welcome to Login App</h2>
-            <div className="input-box">
-            <i class='bx bxs-envelope'></i>
-            <label for="email">Email</label>
-              <input type="email" placeholder="Enter Your Email*"
+     <div className="container-fluid py-5 d-flex justify-content-center align-items-center min-vh-100">
+    <div className="card p-4 shadow" style={{ maxWidth: 400, width: '100%' }}>
+      <form onSubmit={handleSubmit}>
+        <h2 className="mb-4 text-center">Welcome to Login</h2>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">Email</label>
+          <div className="input-group">
+            <span className="input-group-text"><i className="fas fa-envelope"></i></span>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              placeholder="Enter Your Email*"
               onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="input-box">
-              <i class='bx bxs-lock'></i>
-             <label for="password">Password</label>
-              <input type="password" placeholder="Enter Your Password*"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              </div>
-              <button type='submit'>Login</button>
-              <br/>
-            <p>Don't have an account?</p> <Link to="/signup">Signup</Link>
-          </form>
-      </div>
+              required
+            />
+          </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">Password</label>
+          <div className="input-group">
+            <span className="input-group-text"><i className="fas fa-lock"></i></span>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter Your Password*"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" className="btn btn-primary w-100 mb-3">
+          <i className="fas fa-sign-in-alt me-2"></i>Login
+        </button>
+        <div className="text-center">
+          <span>Don't have an account? </span>
+          <Link to="/signup">Signup</Link>
+        </div>
+      </form>
+    </div>
+  </div>
     </>
   );
 };
